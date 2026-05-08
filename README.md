@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 GoalTracker - Modern Daily Roadmap Tracker
 
-## Getting Started
+GoalTracker is a high-performance, feature-rich web application designed to help users manage their long-term learning journeys and daily tasks through interactive roadmaps, milestones, and gamified progress tracking.
 
-First, run the development server:
+![GoalTracker Preview](https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=2072&auto=format&fit=crop)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Key Features
+
+- **🏆 Gamified Progress**: Earn XP, level up, and maintain streaks as you complete tasks. Unlock achievements like "Early Bird" or "Consistency King".
+- **🗺️ Interactive Roadmaps**: Create custom learning paths or upload them via JSON. Organize your journey into milestones and granular tasks.
+- **📊 Advanced Analytics**: Visualize your productivity with beautiful charts powered by Recharts. Track focus time and task completion velocity.
+- **📅 Visual Calendar**: See your past and upcoming tasks in an interactive calendar view.
+- **⏱️ Daily Planner & Pomodoro**: A dedicated space to focus on today's tasks with a built-in Pomodoro timer to boost productivity.
+- **🌓 Dark Mode**: Full support for light and dark themes with a sleek, modern UI.
+- **⚡ High Performance**: Optimized with Next.js 16, utilizing `unstable_cache` for instant data retrieval and skeleton loading states for seamless transitions.
+- **🔒 Secure Auth**: Integrated with Clerk for robust, social-ready authentication.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Database**: [Prisma](https://www.prisma.io/) with PostgreSQL/SQLite
+- **Auth**: [Clerk](https://clerk.com/)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **State Management**: [Zustand](https://docs.pmnd.rs/zustand/)
+- **Charts**: [Recharts](https://recharts.org/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+## 📁 Folder Structure
+
+```text
+goaltracker/
+├── prisma/                 # Database schema and migrations
+├── public/                 # Static assets
+└── src/
+    ├── actions/            # Next.js Server Actions for mutations
+    ├── app/                # Next.js App Router (Pages & API)
+    │   ├── (auth)/         # Authentication routes (Sign-in/Sign-up)
+    │   └── (protected)/    # App routes requiring authentication
+    │       ├── achievements/ # XP and Badge system
+    │       ├── analytics/    # Productivity metrics and charts
+    │       ├── calendar/     # Visual task calendar
+    │       ├── dashboard/    # Main overview and stats
+    │       ├── planner/      # Daily tasks and Pomodoro
+    │       └── roadmaps/     # Roadmap and Milestone management
+    ├── components/
+    │   ├── features/       # Feature-specific complex components
+    │   ├── layout/         # Navigation, Sidebar, and AppLayout
+    │   ├── providers/      # Context providers (Theme, Tooltip, etc.)
+    │   └── ui/             # Reusable base UI components (shadcn/ui)
+    ├── hooks/              # Custom React hooks
+    ├── lib/                # Utility functions, database client, and data fetching
+    ├── store/              # Zustand state stores
+    └── types/              # TypeScript type definitions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 20+ 
+- A PostgreSQL database (or change the provider in `schema.prisma` to `sqlite`)
+- A Clerk account for authentication
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/goaltracker.git
+   cd goaltracker
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Set up Environment Variables**
+   Create a `.env` file in the root and add the following:
+   ```env
+   DATABASE_URL="your_database_url"
+   
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+   CLERK_SECRET_KEY=your_secret_key
+   
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   ```
 
-## Deploy on Vercel
+4. **Initialize Database**
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Deployment
+
+This project is optimized for deployment on **Vercel**.
+
+1. Push your code to GitHub.
+2. Import the project into Vercel.
+3. Add your Environment Variables in the Vercel project settings.
+4. The `postinstall` script will automatically run `prisma generate`.
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
