@@ -1,114 +1,120 @@
-# 🚀 GoalTracker - Modern Daily Roadmap Tracker
+<div align="center">
+  <img src="./public/readme-hero.png" alt="GoalTracker Hero" width="100%" />
 
-GoalTracker is a high-performance, feature-rich web application designed to help users manage their long-term learning journeys and daily tasks through interactive roadmaps, milestones, and gamified progress tracking.
+  # 🚀 GoalTracker
+  ### *The Ultimate AI-Powered Roadmap & Productivity Ecosystem*
 
-![GoalTracker Preview](https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=2072&auto=format&fit=crop)
+  [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+  [![Gemini AI](https://img.shields.io/badge/Gemini_2.0_Flash-8E75B2?style=for-the-badge&logo=google-gemini&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
-## ✨ Key Features
+  ---
 
-- **🏆 Gamified Progress**: Earn XP, level up, and maintain streaks as you complete tasks. Unlock achievements like "Early Bird" or "Consistency King".
-- **🗺️ Interactive Roadmaps**: Create custom learning paths or upload them via JSON. Organize your journey into milestones and granular tasks.
-- **📊 Advanced Analytics**: Visualize your productivity with beautiful charts powered by Recharts. Track focus time and task completion velocity.
-- **📅 Visual Calendar**: See your past and upcoming tasks in an interactive calendar view.
-- **⏱️ Daily Planner & Pomodoro**: A dedicated space to focus on today's tasks with a built-in Pomodoro timer to boost productivity.
-- **🌓 Dark Mode**: Full support for light and dark themes with a sleek, modern UI.
-- **⚡ High Performance**: Optimized with Next.js 16, utilizing `unstable_cache` for instant data retrieval and skeleton loading states for seamless transitions.
-- **🔒 Secure Auth**: Integrated with Clerk for robust, social-ready authentication.
+  **GoalTracker** is a premium, agency-grade productivity suite designed to bridge the gap between learning and execution. By leveraging **Gemini 2.0 Flash AI**, it generates personalized, milestone-driven roadmaps while gamifying your daily progress with XP, streaks, and achievements.
 
-## 🛠️ Tech Stack
+</div>
 
-- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Database**: [Prisma](https://www.prisma.io/) with PostgreSQL/SQLite
-- **Auth**: [Clerk](https://clerk.com/)
-- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
-- **State Management**: [Zustand](https://docs.pmnd.rs/zustand/)
-- **Charts**: [Recharts](https://recharts.org/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
+## 🌟 Premium Features
 
-## 📁 Folder Structure
+### 🤖 AI-Powered Intelligence
+- **Instant Roadmap Generation**: Simply enter a goal (e.g., "Master Next.js"), and our Gemini-powered engine crafts a full path with milestones and granular tasks.
+- **Smart Validation**: AI ensures your learning paths are logically structured and realistically achievable.
+
+### 🎮 Gamified Productivity
+- **XP & Leveling System**: Earn experience points for every task completed. Level up your profile and transition from a *Novice* to a *Level 99 Achiever*.
+- **Daily Streaks**: Stay motivated with visual streak tracking. Maintain your flow and unlock the *Consistency King* title.
+- **Achievements & Badges**: Unlock precision-engineered achievements:
+  - **Early Bird**: For those who start before 8:00 AM.
+  - **Productivity Ninja**: Complete 5+ tasks in a single day.
+  - **Milestone Master**: Complete 10+ major milestones.
+  - **Knowledge Seeker**: Fully complete your first roadmap.
+
+### 📊 Professional Analytics
+- **Visual Progress Tracking**: Beautiful charts powered by **Recharts** show your productivity velocity over time.
+- **Productivity Scores**: Daily logs calculate a "Productivity Score" based on your performance.
+
+### 📅 Advanced Organization
+- **Visual Calendar**: A full-screen interactive calendar to manage your timeline effortlessly.
+- **Interactive Roadmaps**: Drag-and-drop milestones, priority settings, and status management.
+- **Pomodoro Focus**: Integrated timer for deep-work sessions (coming soon/integrated in planner).
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Frontend**: Next.js 16 (App Router), React 19, Framer Motion (Animations)
+- **Styling**: Tailwind CSS (with custom "Curtain" theme toggle system)
+- **Backend**: Next.js Server Actions, Prisma ORM
+- **Database**: PostgreSQL (Scalable & Production-ready)
+- **Authentication**: Clerk (Enterprise-grade security)
+- **AI Engine**: Gemini 2.0 Flash via OpenRouter
+- **State Management**: Zustand (Lightweight & Reactive)
+
+---
+
+## 📂 Project Structure
 
 ```text
-goaltracker/
-├── prisma/                 # Database schema and migrations
-├── public/                 # Static assets
-└── src/
-    ├── actions/            # Next.js Server Actions for mutations
-    ├── app/                # Next.js App Router (Pages & API)
-    │   ├── (auth)/         # Authentication routes (Sign-in/Sign-up)
-    │   └── (protected)/    # App routes requiring authentication
-    │       ├── achievements/ # XP and Badge system
-    │       ├── analytics/    # Productivity metrics and charts
-    │       ├── calendar/     # Visual task calendar
-    │       ├── dashboard/    # Main overview and stats
-    │       ├── planner/      # Daily tasks and Pomodoro
-    │       └── roadmaps/     # Roadmap and Milestone management
-    ├── components/
-    │   ├── features/       # Feature-specific complex components
-    │   ├── layout/         # Navigation, Sidebar, and AppLayout
-    │   ├── providers/      # Context providers (Theme, Tooltip, etc.)
-    │   └── ui/             # Reusable base UI components (shadcn/ui)
-    ├── hooks/              # Custom React hooks
-    ├── lib/                # Utility functions, database client, and data fetching
-    ├── store/              # Zustand state stores
-    └── types/              # TypeScript type definitions
+src/
+├── actions/            # Type-safe Server Actions for DB mutations
+├── app/                # Next.js App Router (Protected & Public routes)
+├── components/         # Atomic UI components & Feature-specific modules
+├── features/           # Complex business logic components
+├── hooks/              # Custom React hooks for global functionality
+├── lib/                # Shared utilities, AI client, and Prisma setup
+├── store/              # Zustand state orchestration
+└── types/              # Centralized TypeScript definitions
 ```
+
+---
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### 1. Clone & Install
+```bash
+git clone https://github.com/your-username/goaltracker.git
+cd goaltracker
+npm install
+```
 
-- Node.js 20+ 
-- A PostgreSQL database (or change the provider in `schema.prisma` to `sqlite`)
-- A Clerk account for authentication
+### 2. Environment Setup
+Create a `.env` file and populate:
+```env
+DATABASE_URL="your-postgresql-url"
+OPENROUTER_API_KEY="your-api-key"
 
-### Installation
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_..."
+CLERK_SECRET_KEY="sk_..."
+```
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/goaltracker.git
-   cd goaltracker
-   ```
+### 3. Database Initialization
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+### 4. Launch Development
+```bash
+npm run dev
+```
 
-3. **Set up Environment Variables**
-   Create a `.env` file in the root and add the following:
-   ```env
-   DATABASE_URL="your_database_url"
-   
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
-   CLERK_SECRET_KEY=your_secret_key
-   
-   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-   ```
+---
 
-4. **Initialize Database**
-   ```bash
-   npx prisma generate
-   npx prisma db push
-   ```
+## 🎨 UI Aesthetics
+- **Dark Mode First**: Optimized for long-night coding sessions.
+- **Micro-animations**: Powered by Framer Motion for a "premium" feel.
+- **Responsive Design**: Flawless experience across Mobile, Tablet, and Desktop.
 
-5. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-## 🚀 Deployment
-
-This project is optimized for deployment on **Vercel**.
-
-1. Push your code to GitHub.
-2. Import the project into Vercel.
-3. Add your Environment Variables in the Vercel project settings.
-4. The `postinstall` script will automatically run `prisma generate`.
+---
 
 ## 📜 License
+Licensed under the **MIT License**. Feel free to use this project for your own learning or as a template.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
+
+<div align="center">
+  Built with ❤️ by the GoalTracker Team
+</div>
+
