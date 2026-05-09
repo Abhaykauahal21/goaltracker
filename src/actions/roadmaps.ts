@@ -73,40 +73,51 @@ export async function addTaskToMilestone(milestoneId: string, title: string, pri
 }
 
 export async function importRoadmapFromJson(jsonData: string) {
-  const { userId: clerkId } = await auth();
-  if (!clerkId) throw new Error("Unauthorized");
+  try {
+    const { userId: clerkId } = await auth();
+    if (!clerkId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
-    where: { clerkId },
-  });
+    const user = await db.user.findUnique({
+      where: { clerkId },
+    });
 
-  if (!user) throw new Error("User not found");
+    if (!user) throw new Error("User not found");
 
-  const data = JSON.parse(jsonData);
-  
-  const roadmap = await db.roadmap.create({
-    data: {
-      title: data.title,
-      description: data.description,
-      userId: user.id,
-      milestones: {
-        create: data.milestones.map((m: any) => ({
-          title: m.title,
-          tasks: {
-            create: m.tasks.map((t: any) => ({
-              title: t.title,
-              priority: t.priority || "MEDIUM",
-              externalUrl: t.externalUrl || t.link || (t.links && t.links.length > 0 ? t.links[0] : null),
-            })),
-          },
-        })),
+    let data;
+    try {
+      data = JSON.parse(jsonData);
+    } catch (e) {
+      throw new Error("Invalid JSON format");
+    }
+    
+    const roadmap = await db.roadmap.create({
+      data: {
+        title: data.title || "Imported Roadmap",
+        description: data.description || "",
+        userId: user.id,
+        milestones: {
+          create: (data.milestones || []).map((m: any) => ({
+            title: m.title || "Untitled Milestone",
+            tasks: {
+              create: (m.tasks || []).map((t: any) => ({
+                title: t.title || "Untitled Task",
+                priority: (t.priority?.toUpperCase() as "LOW" | "MEDIUM" | "HIGH") || "MEDIUM",
+                externalUrl: t.externalUrl || t.link || (t.links && t.links.length > 0 ? t.links[0] : null),
+                links: t.links || (t.link ? [t.link] : t.externalUrl ? [t.externalUrl] : []),
+              })),
+            },
+          })),
+        },
       },
-    },
-  });
+    });
 
-  revalidatePath("/roadmaps");
-  await revalidateUserCache();
-  return roadmap;
+    revalidatePath("/roadmaps");
+    await revalidateUserCache();
+    return roadmap;
+  } catch (error) {
+    console.error("[IMPORT_ROADMAP_ERROR]", error);
+    throw error;
+  }
 }
 
 export async function getRoadmaps() {

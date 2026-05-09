@@ -11,6 +11,7 @@ import {
   PlusCircle,
   Clock,
   CheckCircle2,
+  XIcon,
 } from "lucide-react";
 
 import {
@@ -24,7 +25,9 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarGroupContent,
+  useSidebar,
 } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -64,16 +67,37 @@ const items = [
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const { setOpenMobile, isMobile } = useSidebar();
+
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="h-16 flex items-center px-6">
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+      <SidebarHeader className="h-16 flex items-center justify-between px-6">
+        <Link 
+          href="/" 
+          className="flex items-center gap-2 font-bold text-xl"
+          onClick={handleLinkClick}
+        >
           <div className="bg-primary text-primary-foreground p-1 rounded-md">
             <CheckCircle2 size={24} />
           </div>
           <span className="group-data-[collapsible=icon]:hidden">GoalTracker</span>
         </Link>
+        {isMobile && (
+          <Button 
+            variant="ghost" 
+            size="icon-sm" 
+            onClick={() => setOpenMobile(false)}
+            className="md:hidden"
+          >
+            <XIcon size={20} />
+          </Button>
+        )}
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
@@ -83,7 +107,7 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
-                    render={<Link href={item.url} />}
+                    render={<Link href={item.url} onClick={handleLinkClick} />}
                     isActive={pathname === item.url}
                     tooltip={item.title}
                   >

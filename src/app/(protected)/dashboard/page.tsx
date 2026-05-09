@@ -112,8 +112,8 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Welcome back, {user?.name?.split(' ')[0] || 'Explorer'}! 👋</h1>
+      <div className="flex flex-col items-center text-center sm:items-start sm:text-left space-y-1">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Welcome back, {user?.name?.split(' ')[0] || 'Explorer'}! 👋</h1>
         <p className="text-muted-foreground">Here's what's happening with your goals today.</p>
       </div>
 
@@ -121,13 +121,13 @@ export default async function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, i) => (
           <Card key={i} className="border-none shadow-sm bg-white hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="flex flex-col items-center justify-center space-y-2 pb-2 text-center sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:text-left">
               <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
               <div className={`${stat.bg} ${stat.color} p-2 rounded-lg`}>
                 <stat.icon size={16} />
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-center sm:text-left">
               <div className="text-2xl font-bold">{stat.value}</div>
               <p className="text-xs text-muted-foreground mt-1">{stat.description}</p>
             </CardContent>
@@ -138,7 +138,7 @@ export default async function DashboardPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
         {/* Weekly Analytics - Placeholder for Recharts */}
         <Card className="col-span-4 border-none shadow-sm bg-white">
-          <CardHeader>
+          <CardHeader className="text-center sm:text-left">
             <CardTitle>Weekly Activity</CardTitle>
             <CardDescription>Your productivity across the last 7 days.</CardDescription>
           </CardHeader>
@@ -149,24 +149,24 @@ export default async function DashboardPage() {
 
         {/* Upcoming Tasks */}
         <Card className="col-span-3 border-none shadow-sm bg-white">
-          <CardHeader>
+          <CardHeader className="text-center sm:text-left">
             <CardTitle>Upcoming Tasks</CardTitle>
             <CardDescription>Don't miss these deadlines.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {upcomingTasks.map((task, i) => (
-                <div key={i} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
-                  <div className="flex items-center gap-3">
-                    <div className={`h-2 w-2 rounded-full ${task.priority === 'HIGH' ? 'bg-red-500' :
+                <div key={i} className="flex flex-col sm:flex-row items-center justify-between p-4 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100 gap-4 text-center sm:text-left">
+                  <div className="flex flex-col items-center sm:flex-row gap-3">
+                    <div className={`h-2 w-2 rounded-full hidden sm:block ${task.priority === 'HIGH' ? 'bg-red-500' :
                         task.priority === 'MEDIUM' ? 'bg-yellow-500' : 'bg-blue-500'
                       }`} />
-                    <div>
+                    <div className="flex flex-col items-center sm:items-start">
                       <p className="text-sm font-medium leading-none">{task.title}</p>
                       <p className="text-xs text-muted-foreground mt-1">{task.project}</p>
                     </div>
                   </div>
-                  <div className="text-right">
+                  <div className="flex flex-col items-center sm:items-end">
                     <p className="text-xs font-medium">{task.due}</p>
                     <Badge variant="outline" className="text-[10px] h-4 mt-1">
                       {task.priority}
@@ -182,7 +182,7 @@ export default async function DashboardPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Active Roadmaps */}
         <Card className="col-span-2 border-none shadow-sm bg-white">
-          <CardHeader className="flex flex-row items-center justify-between">
+          <CardHeader className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
               <CardTitle>Active Roadmaps</CardTitle>
               <CardDescription>Progress tracking for your learning paths.</CardDescription>
@@ -193,9 +193,9 @@ export default async function DashboardPage() {
             <div className="space-y-6">
               {activeRoadmaps.map((roadmap, i) => (
                 <div key={i} className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 size={14} className="text-primary" />
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-center sm:text-left">
+                    <div className="flex flex-col items-center sm:flex-row gap-2">
+                      <CheckCircle2 size={14} className="text-primary hidden sm:block" />
                       <span className="font-medium">{roadmap.title}</span>
                     </div>
                     <span className="text-muted-foreground">{roadmap.milestones} Milestones</span>
@@ -215,10 +215,10 @@ export default async function DashboardPage() {
           <div className="absolute top-0 right-0 p-4 opacity-10">
             <Trophy size={120} />
           </div>
-          <CardHeader>
+          <CardHeader className="text-center sm:text-left">
             <CardTitle className="text-primary-foreground/90">Daily Motivation</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 text-center sm:text-left">
             <p className="text-xl font-medium italic">
               "The secret of getting ahead is getting started."
             </p>
@@ -229,7 +229,7 @@ export default async function DashboardPage() {
               </div>
               <Progress value={((dbUser?.xp || 0) % 1000) / 10} className="h-2 bg-primary-foreground/20" />
             </div>
-            <div className="flex gap-2 pt-2">
+            <div className="flex justify-center sm:justify-start gap-2 pt-2">
               <Badge variant="secondary" className="bg-white/20 hover:bg-white/30 border-none text-white">
                 +50 XP for next task
               </Badge>

@@ -6,9 +6,11 @@ import {
   Layers,
   CheckSquare,
   Clock,
-  ArrowRight
+  ArrowRight,
+  Sparkles
 } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { getCachedUserRoadmapsTree } from "@/lib/data-fetching";
 import { syncUser } from "@/actions/user";
 import { CreateRoadmapDialog } from "@/components/features/create-roadmap-dialog";
@@ -27,7 +29,13 @@ export default async function RoadmapsPage() {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">Roadmaps</h1>
           <p className="text-muted-foreground mt-1">Manage your long-term learning journeys and milestones.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Link href="/roadmaps/generate">
+            <Button variant="outline" className="gap-2 border-primary/20 hover:border-primary/40 text-primary">
+              <Sparkles size={16} />
+              Generate with AI
+            </Button>
+          </Link>
           <UploadRoadmapDialog />
           <CreateRoadmapDialog />
         </div>
