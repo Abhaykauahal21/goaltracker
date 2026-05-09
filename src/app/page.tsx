@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, ArrowRight, Star, Zap, Shield, BarChart, Menu, Map, Clock } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { CheckCircle2, ArrowRight, Star, Zap, Shield, BarChart, Menu, Map, Clock, Sparkles } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 
 export default function LandingPage() {
@@ -41,13 +42,13 @@ export default function LandingPage() {
                 <Button size="sm">Get Started</Button>
               </Link>
               <Sheet>
-              <SheetTrigger
-                render={
-                  <Button variant="ghost" size="icon" className="h-9 w-9">
-                    <Menu className="h-5 w-5" />
-                  </Button>
-                }
-              />
+                <SheetTrigger
+                  render={
+                    <Button variant="ghost" size="icon" className="h-9 w-9">
+                      <Menu className="h-5 w-5" />
+                    </Button>
+                  }
+                />
                 <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                   <SheetHeader className="text-left pb-6 border-b">
                     <SheetTitle className="flex items-center gap-2">
@@ -57,7 +58,7 @@ export default function LandingPage() {
                       GoalTracker
                     </SheetTitle>
                     <SheetDescription>
-                      Master your day and conquer your goals.
+                      Master your day and conquer your goals. Powerd by AI
                     </SheetDescription>
                   </SheetHeader>
                   <div className="flex flex-col gap-4 mt-8">
@@ -87,25 +88,29 @@ export default function LandingPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col items-center text-center space-y-8 md:space-y-12">
               <div className="space-y-4 md:space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-2">
+                  <Zap size={14} fill="currentColor" />
+                  <span>Powered by AI</span>
+                </div>
                 <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl break-words">
                   Master Your Day, <br className="hidden sm:block" />
                   <span className="text-primary">Conquer Your Goals.</span>
                 </h1>
                 <p className="mx-auto max-w-[800px] text-slate-500 text-lg md:text-xl lg:text-2xl leading-relaxed">
-                  The modern productivity platform for roadmaps, daily planning, and tracking progress. Built for high-achievers.
+                  The ultimate workspace to generate professional roadmaps using AI or create them manually. Plan your day and track your progress in one place.
                 </p>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                 <Link href="/sign-up" className="w-full sm:w-auto">
-                  <Button size="lg" className="h-14 px-10 text-lg font-semibold w-full sm:w-auto shadow-lg shadow-primary/20 group">
-                    Get Started Free
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  <Button size="lg" className="h-14 px-10 text-lg font-semibold w-full sm:w-auto shadow-lg shadow-primary/20 group bg-primary">
+                    Generate AI Roadmap
+                    <Sparkles className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href="#features" className="w-full sm:w-auto">
                   <Button variant="outline" size="lg" className="h-14 px-10 text-lg font-semibold w-full sm:w-auto">
-                    Explore Features
+                    See AI in Action
                   </Button>
                 </Link>
               </div>
@@ -124,7 +129,7 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-          
+
           {/* Subtle Background Elements */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -z-10" />
         </section>
@@ -141,13 +146,13 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
               {[
                 {
-                  title: "Visual Roadmaps",
-                  desc: "Create and manage complex learning paths with milestones and tasks.",
-                  icon: Map,
+                  title: "AI Roadmap Generation",
+                  desc: "Instantly create structured learning paths for any skill using advanced AI.",
+                  icon: Sparkles,
                 },
                 {
-                  title: "Daily Planner",
-                  desc: "Organize your day with a smart planner, priorities, and DND support.",
+                  title: "Smart AI Planner",
+                  desc: "AI-assisted daily planning that prioritizes your most important roadmap tasks.",
                   icon: Clock,
                 },
                 {
@@ -189,11 +194,12 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-12">
             <div className="flex flex-col items-center md:items-start gap-4">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <div className="bg-primary text-primary-foreground p-1.5 rounded-lg">
                   <CheckCircle2 className="h-6 w-6" />
                 </div>
                 <span className="font-bold text-2xl tracking-tight">GoalTracker</span>
+                <Badge className="bg-primary/10 text-primary border-none text-[10px] py-0">AI POWERED</Badge>
               </div>
               <p className="text-slate-500 max-w-xs text-center md:text-left">
                 The modern roadmap and productivity tracker built for high-achievers.

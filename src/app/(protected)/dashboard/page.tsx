@@ -159,7 +159,7 @@ export default async function DashboardPage() {
                 <div key={i} className="flex flex-col sm:flex-row items-center justify-between p-4 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100 gap-4 text-center sm:text-left">
                   <div className="flex flex-col items-center sm:flex-row gap-3">
                     <div className={`h-2 w-2 rounded-full hidden sm:block ${task.priority === 'HIGH' ? 'bg-red-500' :
-                        task.priority === 'MEDIUM' ? 'bg-yellow-500' : 'bg-blue-500'
+                      task.priority === 'MEDIUM' ? 'bg-yellow-500' : 'bg-blue-500'
                       }`} />
                     <div className="flex flex-col items-center sm:items-start">
                       <p className="text-sm font-medium leading-none">{task.title}</p>

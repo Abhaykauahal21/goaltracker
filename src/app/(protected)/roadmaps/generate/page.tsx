@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Sparkles, 
-  Clock, 
-  Target, 
-  GraduationCap, 
-  ArrowRight, 
-  Loader2, 
-  CheckCircle2, 
+import {
+  Sparkles,
+  Clock,
+  Target,
+  GraduationCap,
+  ArrowRight,
+  Loader2,
+  CheckCircle2,
   Link as LinkIcon,
   ChevronRight,
   Save,
@@ -43,7 +43,7 @@ export default function GenerateRoadmapPage() {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [roadmap, setRoadmap] = useState<GeneratedRoadmap | null>(null);
-  
+
   const [formData, setFormData] = useState({
     topic: "",
     duration: "1 month",
@@ -121,12 +121,12 @@ export default function GenerateRoadmapPage() {
               <Label htmlFor="topic">What do you want to learn? *</Label>
               <div className="relative">
                 <Target className="absolute left-3 top-3 text-muted-foreground" size={18} />
-                <Input 
-                  id="topic" 
-                  placeholder="e.g. React.js Mastery, Marathon Training, UI Design..." 
+                <Input
+                  id="topic"
+                  placeholder="e.g. React.js Mastery, Marathon Training, UI Design..."
                   className="pl-10 h-12 text-lg"
                   value={formData.topic}
-                  onChange={(e) => setFormData({...formData, topic: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
                   disabled={loading}
                 />
               </div>
@@ -136,11 +136,11 @@ export default function GenerateRoadmapPage() {
               <Label htmlFor="duration">Target Duration</Label>
               <div className="relative">
                 <Clock className="absolute left-3 top-3 text-muted-foreground" size={18} />
-                <select 
+                <select
                   id="duration"
                   className="flex h-12 w-full rounded-md border border-input bg-transparent px-10 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                   value={formData.duration}
-                  onChange={(e) => setFormData({...formData, duration: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
                   disabled={loading}
                 >
                   <option>1 week</option>
@@ -156,11 +156,11 @@ export default function GenerateRoadmapPage() {
               <Label htmlFor="level">Skill Level</Label>
               <div className="relative">
                 <GraduationCap className="absolute left-3 top-3 text-muted-foreground" size={18} />
-                <select 
+                <select
                   id="level"
                   className="flex h-12 w-full rounded-md border border-input bg-transparent px-10 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                   value={formData.level}
-                  onChange={(e) => setFormData({...formData, level: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, level: e.target.value })}
                   disabled={loading}
                 >
                   <option>Beginner</option>
@@ -172,12 +172,12 @@ export default function GenerateRoadmapPage() {
 
             <div className="space-y-2 md:col-span-2">
               <Label htmlFor="goal">Any specific goals or focus areas? (Optional)</Label>
-              <textarea 
-                id="goal" 
-                placeholder="e.g. Focus on performance optimization, I have 5 hours a week..." 
+              <textarea
+                id="goal"
+                placeholder="e.g. Focus on performance optimization, I have 5 hours a week..."
                 className="flex min-h-[100px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                 value={formData.goal}
-                onChange={(e) => setFormData({...formData, goal: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
                 disabled={loading}
               />
             </div>
@@ -203,7 +203,7 @@ export default function GenerateRoadmapPage() {
 
       <AnimatePresence>
         {roadmap && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -243,24 +243,23 @@ export default function GenerateRoadmapPage() {
                         <div key={tIdx} className="flex flex-col space-y-2 p-3 rounded-xl border border-slate-100 hover:border-primary/20 transition-colors">
                           <div className="flex items-start justify-between gap-3">
                             <div className="flex items-center gap-3">
-                              <div className={`h-2 w-2 rounded-full mt-1.5 shrink-0 ${
-                                task.priority === 'HIGH' ? 'bg-red-500' : 
-                                task.priority === 'MEDIUM' ? 'bg-yellow-500' : 'bg-blue-500'
-                              }`} />
+                              <div className={`h-2 w-2 rounded-full mt-1.5 shrink-0 ${task.priority === 'HIGH' ? 'bg-red-500' :
+                                  task.priority === 'MEDIUM' ? 'bg-yellow-500' : 'bg-blue-500'
+                                }`} />
                               <span className="text-sm font-medium leading-tight">{task.title}</span>
                             </div>
                             <Badge variant="outline" className="text-[10px] h-4">
                               {task.priority}
                             </Badge>
                           </div>
-                          
+
                           {task.links && task.links.length > 0 && (
                             <div className="flex flex-wrap gap-2 pt-1">
                               {task.links.map((link, lIdx) => (
-                                <a 
-                                  key={lIdx} 
-                                  href={link} 
-                                  target="_blank" 
+                                <a
+                                  key={lIdx}
+                                  href={link}
+                                  target="_blank"
                                   rel="noopener noreferrer"
                                   className="flex items-center gap-1 text-[10px] text-primary hover:underline bg-primary/5 px-2 py-0.5 rounded-md"
                                 >

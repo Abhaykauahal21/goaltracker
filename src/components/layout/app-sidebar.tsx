@@ -78,8 +78,8 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="h-16 flex items-center justify-between px-6">
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="flex items-center gap-2 font-bold text-xl"
           onClick={handleLinkClick}
         >
@@ -89,9 +89,9 @@ export function AppSidebar() {
           <span className="group-data-[collapsible=icon]:hidden">GoalTracker</span>
         </Link>
         {isMobile && (
-          <Button 
-            variant="ghost" 
-            size="icon-sm" 
+          <Button
+            variant="ghost"
+            size="icon-sm"
             onClick={() => setOpenMobile(false)}
             className="md:hidden"
           >
